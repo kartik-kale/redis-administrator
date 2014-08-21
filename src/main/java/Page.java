@@ -3,6 +3,7 @@ import redis.clients.jedis.ScanParams;
 import redis.clients.jedis.ScanResult;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by kartik.k on 8/20/2014.
@@ -32,7 +33,9 @@ public class Page {
             return scanResult.getResult();
         }
         void display(){
-
+            for (Object key: scanResult.getResult()){
+                System.out.print(key.toString() + "\t" + jedis.get(key.toString()) + "\n");
+            }
         }
 
     }
